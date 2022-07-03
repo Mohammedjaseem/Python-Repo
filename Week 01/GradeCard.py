@@ -15,9 +15,7 @@ Lab exams = 73
 Assignments = 87
 Grade of the student is 61.8
 
-
 '''
-
 def avg_written_test(mark):
     avg_written_test_mark=(mark*70)/100
     print("\n Average Written test is: ",avg_written_test_mark)
