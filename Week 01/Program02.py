@@ -3,4 +3,4 @@
 num1 = int(input("Enter 1st Number: "))
 num2 = float(input("Enter 2nd Number: "))
 sum = float(num1+num2)
-print ("Sum is ",sum) 
+print (num1," + ",num2," = ",sum)
