@@ -1,3 +1,13 @@
+"""
+ Write a program to add the values of two 2D arrays
+Program should contains 3 functions including the main function
+main()
+Call function getArray()
+Call function addArray()
+Call function displayArray()
+
+"""
+
 def main():
     getArray()
     addArray()
