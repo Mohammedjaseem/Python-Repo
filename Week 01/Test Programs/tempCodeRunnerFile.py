@@ -1,0 +1,1 @@
+rint(check_prime[i])
