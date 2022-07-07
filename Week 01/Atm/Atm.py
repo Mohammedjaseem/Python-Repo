@@ -21,14 +21,18 @@ pin_status = 0
 def pinchecker(fnname):
     global pin_status
     global user_list
-    user_name = input("\nEnter your user name: ")
+    try:
+        user_name = input("\nEnter your user name: ")
+    except:
+        print("\nPlease enter a valid user name\n")
+        pinchecker(fnname)
     if user_name in user_list:
             print("\nWelcome {}".format(user_name))
             try:
              pin = int(input("\nEnter your pin: "))
             except:
                 print("\nPlease enter a valid pin\n")
-                pinchecker()
+                pinchecker(fnname)
 
             pin_dic = (user_list.get(user_name))
             if pin == pin_dic:
@@ -38,10 +42,10 @@ def pinchecker(fnname):
             else:
                 print("\nWrong pin\n")
                 print ("pin_status:", pin_status)
-                pinchecker()
+                pinchecker(fnname)
     else:
         print("\nUser Not Found!\n")
-        pinchecker()
+        pinchecker(fnname)
     
     back_functio = fnname
     back_functio()
@@ -52,9 +56,13 @@ def deposite():
     global pin_status
     if pin_status == 1:
         amount = int(input("\nEnter the amount to be deposited: "))
-        balance_amount += amount
-        print("\nYour balance is:", balance_amount)
-        choice()
+        if(amount >0):
+            balance_amount += amount
+            print("\nYour balance is:", balance_amount)
+            choice()
+        else:
+            print("\nPlease enter a valid amount\n")
+            deposite()
     pinchecker(deposite)
 
 def balance():
@@ -74,22 +82,22 @@ def withdraw():
     global pin_status
     if pin_status == 1:
         amount = int(input("\nEnter the amount to be withdrawn: "))
-        if amount > balance_amount:
-            print("\nInsufficient balance\n")
-            withdraw()
+        if(amount >0):
+            if (amount > balance_amount ):
+                print("\nInsufficient balance\n")
+                withdraw()
+            else:
+                balance_amount -= amount
+                print("Withdrawal successful :{}".format(amount))
+                print("Your balance is:", balance_amount)
+                print("\nThank you for using our ATM\n")
+                choice()   
         else:
-            balance_amount -= amount
-            print("Withdrawal successful :{}".format(amount))
-            print("Your balance is:", balance_amount)
-            print("\nThank you for using our ATM\n")
-            choice()    
+            print("\nPlease enter a valid amount\n")
+            withdraw() 
     else:
         pinchecker(withdraw)  
         
-     
-            
-
-
 
 # Atm Start from here
 
@@ -101,15 +109,20 @@ def choice():
     2. Withdraw
     3. Deposit
     4. Exit""")
-    choice = int(input("Please enter your choice: "))
-    if choice == 1:
-        balance()
-    elif choice == 2:
-        withdraw()
-    elif choice == 3:
-        deposite()
-    elif choice == 4:
-        exit()
+    try:
+        choice = int(input("Please enter your choice: "))
+        if choice == 1:
+            balance()
+        elif choice == 2:
+            withdraw()
+        elif choice == 3:
+            deposite()
+        elif choice == 4:
+            print("\nThank you for using our ATM\n")
+            exit()
+    except:
+        print("\nPlease enter a valid choice\n")
+    
 
 
 while True:
