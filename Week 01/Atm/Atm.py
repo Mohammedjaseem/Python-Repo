@@ -19,6 +19,7 @@ def pinchecker(fnname):
     global pin_status
     global user_list
     try:
+        global user_name
         user_name = input("\nEnter your user name: ")
     except:
         print("\nPlease enter a valid user name\n")
@@ -92,6 +93,25 @@ def withdraw():
             withdraw() 
     else:
         pinchecker(withdraw)  
+
+def change_pin():
+    global user_list
+    global user_name
+    global pin_status
+    if pin_status == 1:
+        new_pin = int(input("\nEnter your new pin: "))
+        if ((new_pin > 999) and (new_pin < 9999)):
+            user_list[user_name] = new_pin
+            print("\nPin changed successfully\n")
+            print("your new pin is :",user_list[user_name],"\n")
+            pin_status = 0
+            choice()
+            return pin_status
+        else:
+            print("\nPlease enter a valid pin\n")
+            change_pin()
+    else:
+        pinchecker(change_pin)
         
 
 # Atm Start from here
@@ -103,7 +123,8 @@ def choice():
     1. Check Balance
     2. Withdraw
     3. Deposit
-    4. Exit""")
+    4. Change pin
+    5. Exit""")
     choice = int(input("Please enter your choice: "))
     if choice == 1:
         balance()
@@ -112,6 +133,8 @@ def choice():
     elif choice == 3:
         deposite()
     elif choice == 4:
+        change_pin()
+    elif choice == 5:
         print("\nThank you for using our ATM\n")
         exit()
     else:
