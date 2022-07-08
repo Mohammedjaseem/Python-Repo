@@ -1,7 +1,5 @@
-# user dic
-
+# user dictionary
 global user_list
-
 user_list = {
   "jaseem": 2323,
   "murshid": 3434,
@@ -9,7 +7,6 @@ user_list = {
   "althaf": 5656,
   "althaf": 6666,
 }
-
 
 # global values
 global balance_amount 
@@ -74,8 +71,6 @@ def balance():
          print("\nThank you for using our ATM\n")
          choice()
     pinchecker(balance)
-   
-   
 
 def withdraw():
     global balance_amount
@@ -85,7 +80,7 @@ def withdraw():
         if(amount >0):
             if (amount > balance_amount ):
                 print("\nInsufficient balance\n")
-                withdraw()
+                choice() 
             else:
                 balance_amount -= amount
                 print("Withdrawal successful :{}".format(amount))
@@ -109,21 +104,24 @@ def choice():
     2. Withdraw
     3. Deposit
     4. Exit""")
-    try:
-        choice = int(input("Please enter your choice: "))
-        if choice == 1:
-            balance()
-        elif choice == 2:
-            withdraw()
-        elif choice == 3:
-            deposite()
-        elif choice == 4:
-            print("\nThank you for using our ATM\n")
-            exit()
-    except:
+    choice = int(input("Please enter your choice: "))
+    if choice == 1:
+        balance()
+    elif choice == 2:
+        withdraw()
+    elif choice == 3:
+        deposite()
+    elif choice == 4:
+        print("\nThank you for using our ATM\n")
+        exit()
+    else:
         print("\nPlease enter a valid choice\n")
+        main()
     
 
+def main():
+    while True:
+        choice()
 
-while True:
-    choice()
+main()
+  
