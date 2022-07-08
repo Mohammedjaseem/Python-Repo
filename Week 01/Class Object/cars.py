@@ -13,7 +13,7 @@ honda.cc = 1200
 toyota = cars('corolla', 'toyota', 'blue')
 bmw = cars('x5', 'bmw', 'black')
 
-'''
+'''#with out using the init method
 honda.price = "$100"
 honda.color = "red"
 honda.model = "Civic"
