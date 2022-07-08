@@ -1,4 +1,5 @@
 # user dictionary
+
 global user_list
 user_list = {
   "jaseem": 2323,
@@ -39,7 +40,6 @@ def pinchecker(fnname):
                 print ("Account Verified")
             else:
                 print("\nWrong pin\n")
-                print ("pin_status:", pin_status)
                 pinchecker(fnname)
     else:
         print("\nUser Not Found!\n")
@@ -94,6 +94,22 @@ def withdraw():
     else:
         pinchecker(withdraw)  
 
+def add_user():
+    print("\nWelcome to the new user registration\n")
+    global user_list
+    global user_name
+    global pin_status
+    user_name = input("\nEnter your user name: ")
+    if user_name in user_list:
+        print("\nUser name already exists\n")
+        add_user()
+    else:
+        pin = int(input("\nEnter your pin: "))
+        if ((pin > 999) and (pin < 9999)):
+             user_list.update({user_name: pin})
+             print("\nUser added successfully\n")
+             choice()
+
 def change_pin():
     global user_list
     global user_name
@@ -124,7 +140,8 @@ def choice():
     2. Withdraw
     3. Deposit
     4. Change pin
-    5. Exit""")
+    5. New User
+    6. Exit""")
     choice = int(input("Please enter your choice: "))
     if choice == 1:
         balance()
@@ -135,13 +152,14 @@ def choice():
     elif choice == 4:
         change_pin()
     elif choice == 5:
+        add_user()
+    elif choice == 6:
         print("\nThank you for using our ATM\n")
         exit()
     else:
         print("\nPlease enter a valid choice\n")
         main()
     
-
 def main():
     while True:
         choice()
