@@ -1,4 +1,0 @@
-user_db = { 
-"jassy": 2323,
-"balance": 0
-}

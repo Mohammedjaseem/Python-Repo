@@ -39,8 +39,10 @@ def pinchecker(fnname):
     except:
         print("\nPlease enter a valid user name\n")
         pinchecker(fnname)
-    global user_list
+
+    global user_data
     user_list = open(user_name+".txt", "r")
+    user_name = user_list.get()
     if user_name in user_list:
             print("\nWelcome {}".format(user_name))
             try:

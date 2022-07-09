@@ -1,3 +1,49 @@
+
+
+#new user file creation
+import json
+
+
+def new_user(new_user,pincode):
+    #To creat a new userfile
+    filename= new_user + ".txt"
+    file = open(filename, "w") 
+    file.write('{ \n')
+    file.write('"{}": {},'.format(new_user,pincode))
+    file.write('\n"balance": 0\n}')
+    file.close() 
+    print("New user",new_user,"created")
+
+
+#read user Db from Db file
+def read_user_db(new_user):
+    with open(new_user + ".txt") as f:
+        global user_data
+        user_data = f.read()
+        user_data_js = json.loads(user_data)
+        return user_data_js
+
+
+# global values
+global balance_amount 
+global user_data
+
+#balance fetch from user_db file
+user_data_js = read_user_db("ayisha")
+user_data = user_data_js
+balance_amount = user_data_js.get("balance")
+
+
+
+
+
+
+
+"""
+new codes above
+"""
+
+
 # user dictionary
 
 global user_list
@@ -10,7 +56,6 @@ user_list = {
 }
 
 # global values
-global balance_amount 
 balance_amount = 0
 global pin_status
 pin_status = 0
@@ -25,6 +70,7 @@ def pinchecker(fnname):
     except:
         print("\nPlease enter a valid user name\n")
         pinchecker(fnname)
+    
     if user_name in user_list:
             print("\nWelcome {}".format(user_name))
             try:
@@ -106,7 +152,7 @@ def add_user():
     else:
         pin = int(input("\nEnter your pin: "))
         if ((pin > 999) and (pin < 9999)):
-             user_list.update({user_name: pin})
+             new_user(user_name,pin)
              print("\nUser added successfully\n")
              choice()
 
@@ -132,7 +178,7 @@ def change_pin():
 
 # Atm Start from here
 
-print("/n Welcome to the ATM /n")
+print("\n Welcome to the ATM \n")
 
 def choice():
     print("""Please Choose an option:
