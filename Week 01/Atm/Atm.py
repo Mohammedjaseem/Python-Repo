@@ -1,4 +1,6 @@
 
+# need to fix error
+
 
 #new user file creation
 import json
@@ -9,7 +11,8 @@ def new_user(new_user,pincode):
     filename= new_user + ".txt"
     file = open(filename, "w") 
     file.write('{ \n')
-    file.write('"{}": {},'.format(new_user,pincode))
+    file.write('"user_name_db": {},'.format(new_user))
+    file.write('\n"Pin_db": {},'.format(pincode))
     file.write('\n"balance": 0\n}')
     file.close() 
     print("New user",new_user,"created")
@@ -70,8 +73,19 @@ def pinchecker(fnname):
     except:
         print("\nPlease enter a valid user name\n")
         pinchecker(fnname)
-    
-    if user_name in user_list:
+
+    #user db file check
+    global user_data
+    user_data_js = read_user_db(user_name)
+    user_data = user_data_js
+    name = user_data_js.get("user_name_db")
+    print (name)
+    pin_dic = (user_data.get("Pin_db"))
+    print(pin_dic)
+    #check ends here
+
+
+    if name == user_name:
             print("\nWelcome {}".format(user_name))
             try:
              pin = int(input("\nEnter your pin: "))
@@ -79,7 +93,7 @@ def pinchecker(fnname):
                 print("\nPlease enter a valid pin\n")
                 pinchecker(fnname)
 
-            pin_dic = (user_list.get(user_name))
+            pin_dic = (user_data.get("Pin_db"))
             if pin == pin_dic:
                 global pin_status
                 pin_status = 1
