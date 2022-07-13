@@ -2,13 +2,11 @@ from django.http import HttpResponse
 from django.shortcuts import render
 
 # Create your views here.
-num = {
-    'num':[1,2,3,4,5,6,7,8,9]
-}
+from .models import Departments
 
 
 def index(request):
-    return render(request, 'index.html',num) 
+    return render(request, 'index.html') 
 
 def about(request):
     return render(request, 'about.html')
@@ -23,5 +21,8 @@ def contact(request):
     return render(request, 'contact.html')
 
 def department(request):
-    return render(request, 'department.html')
+    dic_dept={
+        'dept':Departments.objects.all()
+    }
+    return render(request, 'department.html', dic_dept)
 
