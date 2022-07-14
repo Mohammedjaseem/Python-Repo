@@ -1,8 +1,10 @@
 from django.http import HttpResponse
 from django.shortcuts import render
 
+
 # Create your views here.
 from .models import Departments
+from .models import Doctors
 
 
 def index(request):
@@ -15,7 +17,10 @@ def bookings(request):
     return render(request, 'bookings.html')
 
 def doctors(request):
-    return render(request, 'doctors.html')
+    dic_docs = {
+        'doctors': Doctors.objects.all()
+    }
+    return render(request, 'doctors.html', dic_docs)
 
 def contact(request):
     return render(request, 'contact.html')
