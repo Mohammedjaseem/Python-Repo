@@ -9,6 +9,7 @@ from .models import Doctors
 from .forms import BookingForm
 
 
+
 def index(request):
     return render(request, 'index.html') 
 
@@ -20,7 +21,7 @@ def bookings(request):
         form = BookingForm(request.POST)
         if form.is_valid():
             form.save()
-            return HttpResponse('<h1>Booking Successful</h1>')
+            return render(request, 'confrm.html')
     else:       
         form = BookingForm()
         dict_form = {
