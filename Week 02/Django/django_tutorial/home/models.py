@@ -21,7 +21,7 @@ class Doctors(models.Model):
     doc_img = models.ImageField(upload_to='doctors')
 
     def __str__(self):
-        return self.doc_name
+        return self.doc_name + " ( " +self.doc_spec + " )"
 
 class Booking(models.Model):
     p_name = models.CharField(max_length=255)

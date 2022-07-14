@@ -7,12 +7,14 @@ Bookings
 
 
 {% block content %}
-<div class="container">
-    <div class="row">
-        <div class="col-md-12">
-            <h1>Welcome to the Bookings page</h1>
-        </div>
-    </div>
+<h2 class="text-center">Make An Appointment</h2>
+<hr>
+<div class="container w-50">
+<forms actions="">
+        {{form.as_p}}
+        <button type="submit" class="btn btn-primary" p-5>Submit</button>
+</forms>
+<br><br>
 </div>
 {% endblock %}
 
