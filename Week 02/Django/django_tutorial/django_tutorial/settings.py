@@ -41,6 +41,13 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'home',
     'crispy_forms',
+
+    # social logins
+    'django.contrib.sites',
+    'allauth',
+    'allauth.account',
+    'allauth.socialaccount', 
+    'allauth.socialaccount.providers.google', #for google auth
 ]
 
 MIDDLEWARE = [
@@ -133,3 +140,29 @@ MEDIA_ROOT = BASE_DIR / 'uploads'
 MEDIA_URL = '/media/'
 
 CRISPY_TEMPLATE_PACK = 'bootstrap4'
+
+# social logins
+
+AUTHENTICATION_BACKENDS = (
+ #used for default signin such as loggin into admin panel
+ 'django.contrib.auth.backends.ModelBackend', 
+  
+ #used for social authentications
+ 'allauth.account.auth_backends.AuthenticationBackend',
+ )
+
+SITE_ID = 1
+
+LOGIN_REDIRECT_URL = '/home'
+
+SOCIALACCOUNT_PROVIDERS = {
+    'google': {
+        'SCOPE': [
+            'profile',
+            'email',
+        ],
+        'AUTH_PARAMS': {
+            'access_type': 'online',
+        }
+    }
+}
