@@ -30,4 +30,6 @@ class Booking(models.Model):
     doc_name = models.ForeignKey(Doctors, on_delete=models.CASCADE)
     booking_date = models.DateField()
     booked_on = models.DateField(auto_now=True)
+
     
+  

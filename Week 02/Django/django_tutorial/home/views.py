@@ -16,11 +16,17 @@ def about(request):
     return render(request, 'about.html')
 
 def bookings(request):
-    form = BookingForm()
-    dict_form = {
-        'form': form
-    }
-    return render(request, 'bookings.html', dict_form)
+    if request.method == 'POST':
+        form = BookingForm(request.POST)
+        if form.is_valid():
+            form.save()
+            return HttpResponse('<h1>Booking Successful</h1>')
+    else:       
+        form = BookingForm()
+        dict_form = {
+            'form': form
+        }
+        return render(request, 'bookings.html', dict_form)
 
 def doctors(request):
     dic_docs = {
